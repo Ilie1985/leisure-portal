@@ -1,51 +1,49 @@
 /* src/styles/bookings.css */
 
-@layer components {
-  .bookings-root {
-    @apply min-h-screen bg-slate-50 text-slate-900;
-  }
+.bookings-root {
+  @apply min-h-screen bg-slate-50 text-slate-900;
+}
 
-  .bookings-shell {
-    @apply max-w-6xl mx-auto pt-8 pb-16 px-6 lg:px-0;
-  }
+.bookings-shell {
+  @apply max-w-6xl mx-auto pt-8 pb-16 px-6 lg:px-0;
+}
 
-  .bookings-header {
-    @apply mb-6;
-  }
+.bookings-header {
+  @apply mb-6;
+}
 
-  .bookings-title {
-    @apply text-2xl font-semibold text-slate-900 mb-1;
-  }
+.bookings-title {
+  @apply text-2xl font-semibold text-slate-900 mb-1;
+}
 
-  .bookings-subtitle {
-    @apply text-sm text-slate-500;
-  }
+.bookings-subtitle {
+  @apply text-sm text-slate-500;
+}
 
-  .bookings-tabs {
-    @apply inline-flex bg-slate-100 rounded-full p-1 text-sm font-medium mb-8 mt-4;
-  }
+.bookings-tabs {
+  @apply inline-flex bg-slate-100 rounded-full p-1 text-sm font-medium mb-8 mt-4;
+}
 
-  .bookings-tab {
-    @apply px-4 py-1.5 rounded-full text-slate-600 cursor-pointer transition;
-  }
+.bookings-tab {
+  @apply px-4 py-1.5 rounded-full text-slate-600 cursor-pointer transition;
+}
 
-  .bookings-tab-active {
-    @apply bg-white text-slate-900 shadow-sm;
-  }
+.bookings-tab-active {
+  @apply bg-white text-slate-900 shadow-sm;
+}
 
-  .bookings-empty-card {
-    @apply mt-4 bg-white rounded-3xl border border-slate-100 shadow-sm flex flex-col items-center justify-center py-16;
-  }
+.bookings-empty-card {
+  @apply mt-4 bg-white rounded-3xl border border-slate-100 shadow-sm flex flex-col items-center justify-center py-16;
+}
 
-  .bookings-empty-icon {
-    @apply w-14 h-14 rounded-2xl bg-slate-50 flex items-center justify-center mb-4;
-  }
+.bookings-empty-icon {
+  @apply w-14 h-14 rounded-2xl bg-slate-50 flex items-center justify-center mb-4;
+}
 
-  .bookings-empty-title {
-    @apply text-base font-semibold text-slate-900 mb-1;
-  }
+.bookings-empty-title {
+  @apply text-base font-semibold text-slate-900 mb-1;
+}
 
-  .bookings-empty-text {
-    @apply text-sm text-slate-500;
-  }
+.bookings-empty-text {
+  @apply text-sm text-slate-500;
 }

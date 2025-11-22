@@ -1,0 +1,215 @@
+/* src/styles/membership.css */
+
+.membership-root {
+  @apply min-h-screen bg-slate-50 text-slate-900;
+}
+
+.membership-shell {
+  @apply max-w-6xl mx-auto pt-8 pb-16 px-6 lg:px-0;
+}
+
+.membership-header {
+  @apply mb-6;
+}
+
+.membership-title {
+  @apply text-2xl font-semibold text-slate-900 mb-1;
+}
+
+.membership-subtitle {
+  @apply text-sm text-slate-500;
+}
+
+/* Status card */
+
+.membership-status-card {
+  @apply bg-gradient-to-r from-fuchsia-50 via-pink-50 to-violet-50 rounded-3xl border border-pink-100 shadow-sm mb-8 px-8 py-6;
+}
+
+.membership-status-header {
+  @apply flex items-center justify-between mb-2;
+}
+
+.membership-status-left {
+  @apply flex items-center gap-3;
+}
+
+.membership-status-icon {
+  @apply w-9 h-9 rounded-2xl bg-fuchsia-600 flex items-center justify-center text-white;
+}
+
+.membership-status-title {
+  @apply text-sm font-semibold text-slate-900;
+}
+
+.membership-status-subtitle {
+  @apply text-xs text-slate-600;
+}
+
+.membership-status-badge {
+  @apply px-3 py-1 rounded-full bg-fuchsia-600 text-white text-[11px] font-semibold;
+}
+
+.membership-status-grid {
+  @apply grid grid-cols-2 md:grid-cols-4 gap-6 mt-4 text-sm;
+}
+
+.membership-label {
+  @apply text-xs uppercase tracking-wide text-slate-500 mb-1;
+}
+
+.membership-value {
+  @apply text-sm font-semibold text-slate-900;
+}
+
+.membership-progress-wrapper {
+  @apply mt-5;
+}
+
+.membership-progress-label {
+  @apply text-xs text-slate-600 mb-2;
+}
+
+.membership-progress-bar {
+  @apply w-full h-1.5 rounded-full bg-slate-200 overflow-hidden;
+}
+
+.membership-progress-fill {
+  @apply h-full bg-slate-900 rounded-full;
+}
+
+/* Renewal reminder bar inside card */
+
+.membership-renewal-banner {
+  @apply mt-6 flex items-start gap-3 bg-amber-50 border border-amber-100 rounded-2xl px-4 py-3;
+}
+
+.membership-renewal-icon {
+  @apply mt-0.5 w-8 h-8 rounded-full bg-white flex items-center justify-center;
+}
+
+.membership-renewal-text-title {
+  @apply text-sm font-semibold text-slate-900;
+}
+
+.membership-renewal-text-sub {
+  @apply text-xs text-slate-600 mt-0.5;
+}
+
+.membership-renewal-button {
+  @apply ml-auto self-center px-4 py-2 rounded-full bg-slate-900 text-white text-xs font-semibold hover:bg-black transition;
+}
+
+/* Benefits */
+
+.membership-section-title {
+  @apply text-sm font-semibold text-slate-900 mb-3 mt-8;
+}
+
+.membership-benefits-grid {
+  @apply grid grid-cols-1 md:grid-cols-2 gap-3;
+}
+
+.membership-benefit-card {
+  @apply bg-white rounded-2xl border border-emerald-100 shadow-sm px-4 py-3 flex items-start gap-3;
+}
+
+.membership-benefit-icon {
+  @apply w-9 h-9 rounded-2xl flex items-center justify-center bg-emerald-50;
+}
+
+.membership-benefit-icon-circle {
+  @apply w-5 h-5 rounded-full border border-emerald-500 flex items-center justify-center text-emerald-500 text-[14px];
+}
+
+.membership-benefit-title {
+  @apply text-sm font-semibold text-slate-900;
+}
+
+.membership-benefit-sub {
+  @apply text-xs text-slate-500 mt-0.5;
+}
+
+/* Plans */
+
+.membership-plans-grid {
+  @apply grid grid-cols-1 md:grid-cols-3 gap-4 mt-3;
+}
+
+.membership-plan-card {
+  @apply bg-white rounded-3xl border border-slate-100 shadow-sm px-5 py-6 flex flex-col;
+}
+
+.membership-plan-card-popular {
+  @apply border-2 border-fuchsia-500 shadow-md;
+}
+
+.membership-plan-tag {
+  @apply self-end mb-2 px-2 py-0.5 rounded-full bg-fuchsia-600 text-[10px] uppercase tracking-wide text-white font-semibold;
+}
+
+.membership-plan-icon {
+  @apply w-9 h-9 rounded-2xl bg-slate-100 flex items-center justify-center mb-3;
+}
+
+.membership-plan-name {
+  @apply text-sm font-semibold text-slate-900;
+}
+
+.membership-plan-subtitle {
+  @apply text-xs text-slate-500 mb-4;
+}
+
+.membership-plan-price {
+  @apply text-2xl font-semibold text-slate-900;
+}
+
+.membership-plan-price-sub {
+  @apply text-xs text-slate-500 mb-4;
+}
+
+.membership-plan-features {
+  @apply flex-1 space-y-1 mb-4 text-xs text-slate-600;
+}
+
+.membership-plan-feature {
+  @apply flex items-center gap-2;
+}
+
+.membership-plan-feature-icon {
+  @apply w-4 h-4 rounded-full bg-emerald-50 flex items-center justify-center text-emerald-600 text-[11px];
+}
+
+.membership-plan-button {
+  @apply mt-auto w-full h-9 rounded-full border border-slate-200 text-xs font-semibold text-slate-900 hover:bg-slate-50 transition;
+}
+
+.membership-plan-button-primary {
+  @apply bg-slate-900 text-white border-slate-900 hover:bg-black;
+}
+
+/* Actions */
+
+.membership-actions-card {
+  @apply mt-8 bg-white rounded-3xl border border-slate-100 shadow-sm;
+}
+
+.membership-actions-header {
+  @apply flex items-center justify-between px-6 py-4 border-b border-slate-100;
+}
+
+.membership-actions-title {
+  @apply text-sm font-semibold text-slate-900;
+}
+
+.membership-actions-body {
+  @apply divide-y divide-slate-100;
+}
+
+.membership-action-row {
+  @apply px-6 py-3 text-xs font-medium text-slate-700 hover:bg-slate-50 cursor-pointer;
+}
+
+.membership-action-row-danger {
+  @apply text-red-500 hover:bg-red-50;
+}
