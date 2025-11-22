@@ -5,7 +5,7 @@ import BookPage from "./pages/book.jsx";
 import BookingsPage from "./pages/bookings.jsx";
 import MembershipPage from "./pages/membership.jsx";
 import ProfilePage from "./pages/profile.jsx";
-
+import AdminPage from "./pages/admin.jsx";
 
 
 function App() {
@@ -18,6 +18,7 @@ function App() {
        <Route path="/bookings" element={<BookingsPage />} />
        <Route path="/membership" element={<MembershipPage />} />
        <Route path="/profile" element={<ProfilePage />} />
+       <Route path="/admin" element={<AdminPage />} />
 
       {/* Fallback: any unknown route goes back to login */}
       <Route path="*" element={<Navigate to="/" replace />} />
