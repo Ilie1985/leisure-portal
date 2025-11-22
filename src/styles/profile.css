@@ -1,0 +1,200 @@
+/* src/styles/profile.css */
+
+.profile-root {
+  @apply min-h-screen bg-slate-50 text-slate-900;
+}
+
+.profile-shell {
+  @apply max-w-6xl mx-auto pt-8 pb-16 px-6 lg:px-0;
+}
+
+.profile-header {
+  @apply mb-6;
+}
+
+.profile-title {
+  @apply text-2xl font-semibold text-slate-900 mb-1;
+}
+
+.profile-subtitle {
+  @apply text-sm text-slate-500;
+}
+
+.profile-layout {
+  @apply grid gap-6 lg:grid-cols-3;
+}
+
+/* Sidebar (avatar + security) */
+
+.profile-sidebar {
+  @apply bg-white rounded-3xl border border-slate-100 shadow-sm px-6 py-6 flex flex-col gap-6 lg:col-span-1;
+}
+
+.profile-avatar-wrapper {
+  @apply flex flex-col items-center text-center;
+}
+
+.profile-avatar {
+  @apply w-24 h-24 rounded-full bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center text-white text-3xl font-semibold mb-3 relative;
+}
+
+.profile-avatar-badge {
+  @apply w-8 h-8 rounded-full bg-white shadow-md flex items-center justify-center
+         absolute bottom-0 right-0 translate-x-1 translate-y-1;
+}
+
+.profile-avatar-name {
+  @apply text-sm font-semibold text-slate-900;
+}
+
+.profile-avatar-email {
+  @apply text-xs text-slate-500;
+}
+
+.profile-role-badge {
+  @apply mt-3 inline-flex items-center px-3 py-1 rounded-full bg-blue-50 text-[11px] font-semibold text-blue-700;
+}
+
+.profile-security-card {
+  @apply bg-slate-50 rounded-2xl px-4 py-4;
+}
+
+.profile-security-title {
+  @apply text-xs font-semibold text-slate-900 mb-3;
+}
+
+.profile-security-item {
+  @apply flex items-start gap-3 mb-2 last:mb-0;
+}
+
+.profile-security-icon {
+  @apply w-7 h-7 rounded-full bg-white flex items-center justify-center shadow-sm;
+}
+
+.profile-security-text-title {
+  @apply text-xs font-semibold text-slate-900;
+}
+
+.profile-security-text-sub {
+  @apply text-[11px] text-slate-500;
+}
+
+/* Main content cards */
+
+.profile-main {
+  @apply flex flex-col gap-6 lg:col-span-2;
+}
+
+.profile-card {
+  @apply bg-white rounded-3xl border border-slate-100 shadow-sm;
+}
+
+.profile-card-header {
+  @apply px-6 py-4 border-b border-slate-100;
+}
+
+.profile-card-title {
+  @apply text-sm font-semibold text-slate-900;
+}
+
+.profile-card-subtitle {
+  @apply text-xs text-slate-500 mt-0.5;
+}
+
+.profile-card-body {
+  @apply px-6 py-5;
+}
+
+/* Form controls */
+
+.profile-form-grid {
+  @apply grid gap-4 md:grid-cols-2;
+}
+
+.profile-form-row {
+  @apply mb-4;
+}
+
+.profile-label {
+  @apply text-xs font-medium text-slate-700 mb-1.5 block;
+}
+
+.profile-input {
+  @apply w-full h-10 rounded-xl bg-slate-100 border border-transparent
+         px-3 text-[13px] text-slate-800 placeholder:text-slate-400
+         focus:outline-none focus:ring-2 focus:ring-blue-500 focus:bg-white;
+}
+
+.profile-input-disabled {
+  @apply bg-slate-50 text-slate-400;
+}
+
+.profile-actions {
+  @apply flex justify-end gap-3 mt-2;
+}
+
+.profile-button {
+  @apply h-9 px-4 rounded-full text-xs font-semibold border border-slate-200 text-slate-700 hover:bg-slate-50 transition;
+}
+
+.profile-button-primary {
+  @apply border-slate-900 bg-slate-900 text-white hover:bg-black;
+}
+
+/* Session info */
+
+.profile-session-card {
+  @apply profile-card;
+}
+
+.profile-session-list {
+  @apply px-6 py-4 space-y-1 text-xs text-slate-700;
+}
+
+.profile-session-item-label {
+  @apply text-[11px] uppercase tracking-wide text-slate-500;
+}
+
+.profile-session-item-value {
+  @apply text-xs font-semibold text-slate-900;
+}
+
+/* Change password */
+
+.profile-password-info {
+  @apply mb-4 text-xs text-slate-600 bg-blue-50 border border-blue-100 rounded-2xl px-4 py-3;
+}
+
+.profile-password-grid {
+  @apply grid gap-4;
+}
+
+/* Notification prefs */
+
+.profile-notify-list {
+  @apply space-y-3 text-xs;
+}
+
+.profile-notify-item {
+  @apply flex items-center justify-between gap-3;
+}
+
+.profile-notify-label {
+  @apply text-slate-800;
+}
+
+.profile-toggle {
+  @apply w-9 h-5 rounded-full bg-purple-100 relative flex items-center px-0.5 cursor-pointer;
+}
+
+.profile-toggle-thumb {
+  @apply w-4 h-4 rounded-full bg-purple-600 translate-x-4;
+}
+
+.profile-toggle-off {
+  @apply bg-slate-200;
+}
+
+.profile-toggle-thumb-off {
+  @apply bg-white translate-x-0;
+}
