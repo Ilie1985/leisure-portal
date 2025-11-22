@@ -1,4 +1,6 @@
+// src/pages/dashboard.jsx
 import "../styles/dashboard.css";
+import { useNavigate } from "react-router-dom";
 
 const mockUpcomingBookings = [
   {
@@ -22,11 +24,19 @@ const mockUpcomingBookings = [
 ];
 
 export default function DashboardPage() {
+  const navigate = useNavigate();
+
+  const goDashboard = () => navigate("/dashboard");
+  const goBook = () => navigate("/book");
+  const goBookings = () => navigate("/bookings");       // we'll build later
+  const goMembership = () => navigate("/membership");   // later
+  const goProfile = () => navigate("/profile");         // later
+
   return (
     <div className="dashboard-root">
       {/* Top nav */}
       <header className="dashboard-topbar">
-        <div className="dashboard-brand">
+        <div className="dashboard-brand" onClick={goDashboard}>
           <div className="w-9 h-9 rounded-2xl bg-blue-600 flex items-center justify-center text-white text-lg font-bold">
             L
           </div>
@@ -39,23 +49,26 @@ export default function DashboardPage() {
         </div>
 
         <nav className="dashboard-nav">
-          <button className="dashboard-nav-link dashboard-nav-link-active">
+          <button
+            className="dashboard-nav-link dashboard-nav-link-active"
+            onClick={goDashboard}
+          >
             <span className="material-icons text-[16px]">home</span>
             <span>Dashboard</span>
           </button>
-          <button className="dashboard-nav-link">
+          <button className="dashboard-nav-link" onClick={goBook}>
             <span className="material-icons text-[16px]">calendar_today</span>
             <span>Book Services</span>
           </button>
-          <button className="dashboard-nav-link">
+          <button className="dashboard-nav-link" onClick={goBookings}>
             <span className="material-icons text-[16px]">list_alt</span>
             <span>My Bookings</span>
           </button>
-          <button className="dashboard-nav-link">
+          <button className="dashboard-nav-link" onClick={goMembership}>
             <span className="material-icons text-[16px]">credit_card</span>
             <span>Membership</span>
           </button>
-          <button className="dashboard-nav-link">
+          <button className="dashboard-nav-link" onClick={goProfile}>
             <span className="material-icons text-[16px]">person</span>
             <span>Profile</span>
           </button>
@@ -172,7 +185,7 @@ export default function DashboardPage() {
           <section>
             <div className="dashboard-quick-title">Quick Actions</div>
             <div className="dashboard-quick-grid">
-              <div className="dashboard-quick-card">
+              <div className="dashboard-quick-card" onClick={goBook}>
                 <div className="dashboard-quick-icon bg-blue-50">
                   <span className="material-icons text-blue-600">
                     calendar_today
@@ -184,7 +197,7 @@ export default function DashboardPage() {
                 </div>
               </div>
 
-              <div className="dashboard-quick-card">
+              <div className="dashboard-quick-card" onClick={goBookings}>
                 <div className="dashboard-quick-icon bg-emerald-50">
                   <span className="material-icons text-emerald-600">list</span>
                 </div>
@@ -194,7 +207,7 @@ export default function DashboardPage() {
                 </div>
               </div>
 
-              <div className="dashboard-quick-card">
+              <div className="dashboard-quick-card" onClick={goMembership}>
                 <div className="dashboard-quick-icon bg-purple-50">
                   <span className="material-icons text-purple-600">
                     credit_card
@@ -206,7 +219,7 @@ export default function DashboardPage() {
                 </div>
               </div>
 
-              <div className="dashboard-quick-card">
+              <div className="dashboard-quick-card" onClick={goProfile}>
                 <div className="dashboard-quick-icon bg-orange-50">
                   <span className="material-icons text-orange-500">person</span>
                 </div>
@@ -221,18 +234,11 @@ export default function DashboardPage() {
           {/* Upcoming bookings */}
           <section className="dashboard-bookings-card">
             <div className="dashboard-bookings-header">Upcoming Bookings</div>
-            {mockUpcomingBookings.map((b, idx) => (
-              <div
-                key={b.id}
-                className={`dashboard-booking-row ${
-                  idx === 0 ? "" : ""
-                }`}
-              >
+            {mockUpcomingBookings.map((b) => (
+              <div key={b.id} className="dashboard-booking-row">
                 <div className="dashboard-booking-main">
                   <div className="dashboard-booking-icon">
-                    <span className="material-icons text-blue-600">
-                      event
-                    </span>
+                    <span className="material-icons text-blue-600">event</span>
                   </div>
                   <div>
                     <div className="dashboard-booking-title">{b.service}</div>
