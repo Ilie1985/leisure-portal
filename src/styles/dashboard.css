@@ -1,0 +1,177 @@
+/* src/styles/dashboard.css */
+
+.dashboard-root {
+  @apply min-h-screen bg-slate-50;
+}
+
+.dashboard-shell {
+  @apply max-w-6xl mx-auto px-6 pb-12;
+}
+
+.dashboard-topbar {
+  @apply flex items-center justify-between h-16 border-b border-slate-200 bg-white/80
+    backdrop-blur sticky top-0 z-20 px-6;
+}
+
+.dashboard-brand {
+  @apply flex items-center gap-2;
+}
+
+.dashboard-nav {
+  @apply flex items-center gap-6 text-[14px];
+}
+
+.dashboard-nav-link {
+  @apply flex items-center gap-2 text-slate-600 hover:text-blue-600 cursor-pointer;
+}
+
+.dashboard-nav-link-active {
+  @apply text-blue-600 border-b-2 border-blue-600 pb-1;
+}
+
+.dashboard-main {
+  @apply pt-8 space-y-8;
+}
+
+/* Hero welcome card */
+.dashboard-hero {
+  @apply rounded-3xl bg-gradient-to-r from-blue-600 to-indigo-600 text-white
+    px-8 py-7 shadow-lg;
+}
+
+.dashboard-hero-title {
+  @apply text-2xl md:text-3xl font-semibold mb-1;
+}
+
+.dashboard-hero-subtitle {
+  @apply text-[14px] text-blue-100;
+}
+
+.dashboard-hero-badges {
+  @apply flex flex-wrap gap-2 mt-5;
+}
+
+.dashboard-hero-badge {
+  @apply inline-flex items-center rounded-full bg-white/10 px-3 py-1 text-[12px];
+}
+
+/* Stats cards */
+.dashboard-stats-grid {
+  @apply grid grid-cols-1 md:grid-cols-4 gap-4 mt-6;
+}
+
+.dashboard-stat-card {
+  @apply bg-white rounded-2xl border border-slate-200 px-5 py-4 flex flex-col
+    justify-between shadow-sm;
+}
+
+.dashboard-stat-label {
+  @apply flex items-center justify-between text-[13px] text-slate-500 mb-2;
+}
+
+.dashboard-stat-value {
+  @apply text-2xl font-semibold text-slate-900;
+}
+
+.dashboard-stat-sub {
+  @apply text-[12px] text-slate-500 mt-1;
+}
+
+/* Renewal banner */
+.dashboard-renewal-banner {
+  @apply mt-7 bg-amber-50 border border-amber-200 rounded-2xl px-6 py-4 flex
+    items-center gap-4;
+}
+
+.dashboard-renewal-icon {
+  @apply w-10 h-10 rounded-full bg-amber-100 flex items-center justify-center;
+}
+
+.dashboard-renewal-text {
+  @apply flex-1;
+}
+
+.dashboard-renewal-title {
+  @apply text-[14px] font-semibold text-slate-900;
+}
+
+.dashboard-renewal-sub {
+  @apply text-[13px] text-slate-600;
+}
+
+.dashboard-renewal-button {
+  @apply rounded-full bg-slate-900 text-white text-[13px] font-semibold
+    px-4 py-2 hover:bg-black transition;
+}
+
+/* Quick actions */
+.dashboard-quick-title {
+  @apply mt-8 mb-3 text-[15px] font-semibold text-slate-900;
+}
+
+.dashboard-quick-grid {
+  @apply grid grid-cols-1 md:grid-cols-4 gap-4;
+}
+
+.dashboard-quick-card {
+  @apply bg-white rounded-2xl border border-slate-200 px-5 py-4 flex flex-col
+    gap-2 cursor-pointer hover:shadow-md transition;
+}
+
+.dashboard-quick-icon {
+  @apply w-10 h-10 rounded-2xl flex items-center justify-center;
+}
+
+.dashboard-quick-title-text {
+  @apply text-[14px] font-semibold text-slate-900;
+}
+
+.dashboard-quick-sub {
+  @apply text-[13px] text-slate-600;
+}
+
+/* Upcoming bookings */
+.dashboard-bookings-card {
+  @apply mt-7 bg-white rounded-2xl border border-slate-200 shadow-sm;
+}
+
+.dashboard-bookings-header {
+  @apply px-5 py-4 border-b border-slate-100 text-[15px] font-semibold text-slate-900;
+}
+
+.dashboard-booking-row {
+  @apply px-5 py-4 flex items-center justify-between border-t border-slate-100;
+}
+
+.dashboard-booking-main {
+  @apply flex items-center gap-3;
+}
+
+.dashboard-booking-icon {
+  @apply w-10 h-10 rounded-2xl bg-blue-50 flex items-center justify-center;
+}
+
+.dashboard-booking-title {
+  @apply text-[14px] font-semibold text-slate-900;
+}
+
+.dashboard-booking-meta {
+  @apply text-[13px] text-slate-600;
+}
+
+.dashboard-booking-status {
+  @apply text-[12px] px-3 py-1 rounded-full font-medium;
+}
+
+.dashboard-booking-status-confirmed {
+  @apply bg-slate-900 text-white;
+}
+
+.dashboard-booking-status-pending {
+  @apply bg-slate-100 text-slate-700;
+}
+
+.dashboard-bookings-footer {
+  @apply px-5 py-3 text-center text-[13px] text-slate-700 bg-slate-50
+    rounded-b-2xl cursor-pointer hover:bg-slate-100;
+}
