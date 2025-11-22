@@ -1,0 +1,74 @@
+/* src/styles/auth.css */
+
+.auth-root {
+  @apply min-h-screen bg-gradient-to-br from-slate-50 via-slate-50 to-slate-100
+    flex items-center justify-center px-6 py-10;
+}
+
+.auth-shell {
+  @apply max-w-6xl w-full grid lg:grid-cols-[1.1fr,0.9fr] gap-10 items-stretch;
+}
+
+.auth-left-title {
+  @apply text-4xl md:text-[44px] leading-tight font-semibold text-slate-900 mb-4;
+}
+
+.auth-left-subtitle {
+  @apply text-[15px] text-slate-600 max-w-xl mb-8;
+}
+
+.auth-image-card {
+  @apply overflow-hidden rounded-3xl shadow-lg border border-slate-200
+    bg-slate-900 h-64 md:h-72 relative mt-10;
+}
+
+.auth-card {
+  @apply bg-white rounded-[32px] shadow-xl border border-slate-100
+    px-8 py-7 flex flex-col;
+}
+
+.auth-tabs {
+  @apply inline-flex rounded-full bg-slate-100 p-1 mb-6 text-[13px] font-medium;
+}
+
+.auth-tab {
+  @apply px-6 py-2 rounded-full transition;
+}
+
+.auth-tab-active {
+  @apply bg-white shadow-sm text-slate-900;
+}
+
+.auth-tab-inactive {
+  @apply text-slate-500;
+}
+
+.auth-input-label {
+  @apply font-medium text-slate-800 text-sm;
+}
+
+.auth-input-wrapper {
+  @apply relative;
+}
+
+.auth-input-icon {
+  @apply absolute left-3 top-1/2 -translate-y-1/2
+    text-slate-400 text-[18px];
+}
+
+
+.auth-input {
+  @apply w-full h-11 rounded-[12px] bg-slate-100 border border-transparent
+    pl-10 pr-3 text-[14px] text-slate-800 placeholder:text-slate-400
+    focus:outline-none focus:ring-2 focus:ring-blue-500 focus:bg-white;
+}
+
+.auth-primary-button {
+  @apply mt-2 w-full h-11 rounded-[999px] bg-slate-900 text-white
+    text-[14px] font-semibold hover:bg-black transition;
+}
+
+.auth-quick-button {
+  @apply h-11 rounded-[999px] border border-slate-200 text-[13px]
+    font-medium text-slate-800 hover:bg-slate-50;
+}
