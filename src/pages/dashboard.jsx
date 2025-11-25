@@ -36,17 +36,22 @@ export default function DashboardPage() {
     <div className="dashboard-root">
       {/* Top nav */}
       <header className="dashboard-topbar">
-        <div className="dashboard-brand" onClick={goDashboard}>
-          <div className="w-9 h-9 rounded-2xl bg-blue-600 flex items-center justify-center text-white text-lg font-bold">
-            L
-          </div>
-          <div className="leading-tight">
-            <div className="text-[14px] font-semibold text-slate-900">
-              Leisure Management
-            </div>
-            <div className="text-[11px] text-slate-500">Your wellness hub</div>
-          </div>
-        </div>
+       
+        <div 
+  className="dashboard-brand cursor-pointer"
+  onClick={() => navigate("/")}
+>
+  <div className="w-9 h-9 rounded-2xl bg-blue-600 flex items-center justify-center text-white text-lg font-bold">
+    L
+  </div>
+  <div className="leading-tight">
+    <div className="text-[14px] font-semibold text-slate-900">
+      Leisure Management
+    </div>
+    <div className="text-[11px] text-slate-500">Your wellness hub</div>
+  </div>
+</div>
+
 
         <nav className="dashboard-nav">
           <button
