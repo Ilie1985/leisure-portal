@@ -36,7 +36,6 @@ export function AuthProvider({ children }) {
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 }
 
-// ✅ you NEED this
 export function useAuth() {
   const ctx = useContext(AuthContext);
   if (!ctx) {

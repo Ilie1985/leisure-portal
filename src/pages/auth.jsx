@@ -1,10 +1,19 @@
+import { useEffect } from "react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../styles/auth.css"; // ⬅️ import Tailwind component styles
 import SecurityFeature from "../components/SecurityFeature.jsx";
+import { supabase } from "../lib/supabaseClient";
+import { useAuth } from "../context/auth.jsx";
+
 
 export default function AuthPage() {
+  
   const [mode, setMode] = useState("login"); // "login" | "register"
+  const { user } = useAuth();
+const [submitting, setSubmitting] = useState(false);
+const [error, setError] = useState("");
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [rememberMe, setRememberMe] = useState(false);
@@ -12,16 +21,40 @@ export default function AuthPage() {
 
   const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
 
-    // Fake auth handler – replace with real API later
-    if (mode === "login") {
-      navigate("/dashboard");
+  //   // Fake auth handler – replace with real API later
+  //   if (mode === "login") {
+  //     navigate("/dashboard");
+  //   } else {
+  //     navigate("/dashboard");
+  //   }
+  // };
+
+  const handleSubmit = async (e) => {
+  e.preventDefault();
+  setSubmitting(true);
+  setError("");
+
+  try {
+    if (mode === "register") {
+      const { error } = await supabase.auth.signUp({ email, password });
+      if (error) throw error;
+
+      // If email confirmations are ON, user may need to confirm via email.
+      // If OFF, they’ll be logged in immediately and redirected by the useEffect above.
     } else {
-      navigate("/dashboard");
+      const { error } = await supabase.auth.signInWithPassword({ email, password });
+      if (error) throw error;
     }
-  };
+  } catch (err) {
+    setError(err.message || "Something went wrong");
+  } finally {
+    setSubmitting(false);
+  }
+};
+
 
   const handleQuickDemoUser = () => {
     navigate("/dashboard");
@@ -30,6 +63,11 @@ export default function AuthPage() {
   const handleQuickDemoAdmin = () => {
     navigate("/admin");
   };
+
+  useEffect(() => {
+  if (user) navigate("/dashboard");
+}, [user, navigate]);
+
 
   return (
     <div className="auth-root">
@@ -196,9 +234,20 @@ export default function AuthPage() {
               </button>
             </div>
 
-            <button type="submit" className="auth-primary-button">
+            {/* <button type="submit" className="auth-primary-button">
               {mode === "login" ? "Sign In" : "Create Account"}
-            </button>
+            </button> */}
+
+{error && (
+  <div className="text-[13px] text-rose-600 bg-rose-50 border border-rose-100 rounded-xl px-3 py-2">
+    {error}
+  </div>
+)}
+
+            <button type="submit" className="auth-primary-button" disabled={submitting}>
+  {submitting ? "Please wait..." : mode === "login" ? "Sign In" : "Create Account"}
+</button>
+
           </form>
 
           {/* Divider */}

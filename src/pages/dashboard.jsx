@@ -1,4 +1,5 @@
 // src/pages/dashboard.jsx
+import { useAuth } from "../context/auth.jsx";
 import "../styles/dashboard.css";
 import { useNavigate } from "react-router-dom";
 
@@ -25,6 +26,9 @@ const mockUpcomingBookings = [
 
 export default function DashboardPage() {
   const navigate = useNavigate();
+const { user } = useAuth();
+const displayName = user?.email?.split("@")[0] ?? "User";
+const initials = (displayName[0] ?? "U").toUpperCase();
 
   const goDashboard = () => navigate("/dashboard");
   const goBook = () => navigate("/book");
@@ -89,7 +93,7 @@ export default function DashboardPage() {
             </span>
           </button>
           <div className="w-9 h-9 rounded-full bg-blue-600 text-white flex items-center justify-center text-[14px] font-semibold">
-            JD
+            {initials}
           </div>
         </div>
       </header>
@@ -99,7 +103,7 @@ export default function DashboardPage() {
         <div className="dashboard-main">
           {/* Hero / welcome */}
           <section className="dashboard-hero">
-            <div className="dashboard-hero-title">Welcome back, John!</div>
+            <div className="dashboard-hero-title">Welcome back, {displayName}!</div>
             <div className="dashboard-hero-subtitle">
               Manage your bookings and membership in one place.
             </div>
