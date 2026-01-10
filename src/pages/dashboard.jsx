@@ -2,27 +2,30 @@
 import { useAuth } from "../context/auth.jsx";
 import "../styles/dashboard.css";
 import { useNavigate } from "react-router-dom";
+import { supabase } from "../lib/supabaseClient";
+import { useEffect, useMemo, useState } from "react";
 
-const mockUpcomingBookings = [
-  {
-    id: 1,
-    service: "Swimming Lesson",
-    date: "2025-11-05 at 14:00",
-    status: "Confirmed",
-  },
-  {
-    id: 2,
-    service: "Library Session",
-    date: "2025-11-08 at 10:00",
-    status: "Confirmed",
-  },
-  {
-    id: 3,
-    service: "Hall Reservation",
-    date: "2025-11-10 at 18:00",
-    status: "Pending",
-  },
-];
+
+// const mockUpcomingBookings = [
+//   {
+//     id: 1,
+//     service: "Swimming Lesson",
+//     date: "2025-11-05 at 14:00",
+//     status: "Confirmed",
+//   },
+//   {
+//     id: 2,
+//     service: "Library Session",
+//     date: "2025-11-08 at 10:00",
+//     status: "Confirmed",
+//   },
+//   {
+//     id: 3,
+//     service: "Hall Reservation",
+//     date: "2025-11-10 at 18:00",
+//     status: "Pending",
+//   },
+// ];
 
 export default function DashboardPage() {
   const navigate = useNavigate();
@@ -30,11 +33,54 @@ const { user, role} = useAuth();
 const displayName = user?.email?.split("@")[0] ?? "User";
 const initials = (displayName[0] ?? "U").toUpperCase();
 
+
+const [loadingBookings, setLoadingBookings] = useState(true);
+const [userBookings, setUserBookings] = useState([]);
+const [bookingError, setBookingError] = useState("");
+
+const now = useMemo(() => new Date(), []);
+
+useEffect(() => {
+  async function load() {
+    if (!user) {
+      setLoadingBookings(false);
+      setUserBookings([]);
+      return;
+    }
+
+    setLoadingBookings(true);
+    setBookingError("");
+
+    const { data, error } = await supabase
+      .from("bookings")
+      .select("*")
+      .eq("user_id", user.id)
+      .order("start_time", { ascending: true });
+
+    if (error) {
+      setBookingError(error.message);
+      setUserBookings([]);
+    } else {
+      setUserBookings(data ?? []);
+    }
+
+    setLoadingBookings(false);
+  }
+
+  load();
+}, [user?.id]);
+
+
+const upcomingBookings = userBookings.filter(
+  (b) => new Date(b.start_time) >= now
+);
+
+
   const goDashboard = () => navigate("/dashboard");
   const goBook = () => navigate("/book");
-  const goBookings = () => navigate("/bookings");       // we'll build later
-  const goMembership = () => navigate("/membership");   // later
-  const goProfile = () => navigate("/profile");         // later
+  const goBookings = () => navigate("/bookings");       
+  const goMembership = () => navigate("/membership");   
+  const goProfile = () => navigate("/profile");         
 
   return (
     <div className="dashboard-root">
@@ -103,8 +149,7 @@ const initials = (displayName[0] ?? "U").toUpperCase();
         <div className="dashboard-main">
           {/* Hero / welcome */}
           <section className="dashboard-hero">
-            <div className="dashboard-hero-title">Welcome back, {user?.email?.split("@")[0]}!
-Role: {role}
+            <div className="dashboard-hero-title">Welcome back, {displayName}! 
 </div>
             <div className="dashboard-hero-subtitle">
               Manage your bookings and membership in one place.
@@ -115,7 +160,8 @@ Role: {role}
                 <span className="material-icons text-[14px] mr-1">
                   verified_user
                 </span>
-                Role: USER
+                Role: {role ?? "USER"}
+
               </span>
               <span className="dashboard-hero-badge">
                 <span className="material-icons text-[14px] mr-1">
@@ -245,32 +291,45 @@ Role: {role}
           {/* Upcoming bookings */}
           <section className="dashboard-bookings-card">
             <div className="dashboard-bookings-header">Upcoming Bookings</div>
-            {mockUpcomingBookings.map((b) => (
-              <div key={b.id} className="dashboard-booking-row">
-                <div className="dashboard-booking-main">
-                  <div className="dashboard-booking-icon">
-                    <span className="material-icons text-blue-600">event</span>
-                  </div>
-                  <div>
-                    <div className="dashboard-booking-title">{b.service}</div>
-                    <div className="dashboard-booking-meta">{b.date}</div>
-                  </div>
-                </div>
-                <div>
-                  {b.status === "Confirmed" ? (
-                    <span className="dashboard-booking-status dashboard-booking-status-confirmed">
-                      Confirmed
-                    </span>
-                  ) : (
-                    <span className="dashboard-booking-status dashboard-booking-status-pending">
-                      Pending
-                    </span>
-                  )}
-                </div>
-              </div>
-            ))}
+         
+{loadingBookings ? (
+  <div className="p-6 text-slate-500 text-sm">Loading bookings…</div>
+) : bookingError ? (
+  <div className="p-6 text-rose-600 text-sm">{bookingError}</div>
+) : upcomingBookings.length === 0 ? (
+  <div className="p-6 text-slate-500 text-sm">No upcoming bookings yet.</div>
+) : (
+  upcomingBookings.slice(0, 3).map((b) => (
+    <div key={b.id} className="dashboard-booking-row">
+      <div className="dashboard-booking-main">
+        <div className="dashboard-booking-icon">
+          <span className="material-icons text-blue-600">event</span>
+        </div>
+        <div>
+          <div className="dashboard-booking-title">{b.service}</div>
+          <div className="dashboard-booking-meta">
+            {new Date(b.start_time).toLocaleString()}
+            {b.location ? ` • ${b.location}` : ""}
+          </div>
+        </div>
+      </div>
 
-            <div className="dashboard-bookings-footer">View All Bookings</div>
+      <div>
+        {String(b.status).toLowerCase() === "confirmed" ? (
+          <span className="dashboard-booking-status dashboard-booking-status-confirmed">
+            Confirmed
+          </span>
+        ) : (
+          <span className="dashboard-booking-status dashboard-booking-status-pending">
+            {b.status}
+          </span>
+        )}
+      </div>
+    </div>
+  ))
+)}
+
+            <div className="dashboard-bookings-footer" onClick={goBookings}>View All Bookings</div>
           </section>
         </div>
       </main>
