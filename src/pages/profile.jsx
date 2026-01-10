@@ -1,17 +1,37 @@
 // src/pages/profile.jsx
 import "../styles/dashboard.css"; // reuse top nav styles
+import { useAuth } from "../context/auth.jsx";
 import "../styles/profile.css";
 import { useNavigate } from "react-router-dom";
 
+
+
+
+
 export default function ProfilePage() {
   const navigate = useNavigate();
+
+  const { user, role,signOut } = useAuth();
+
+  const handleLogout = async () => {
+    try {
+      await signOut();                // Supabase logout
+      navigate("/", { replace: true });// back to login page
+    } catch (e) {
+      console.error("Logout error:", e);
+    }
+  };
+
+const initials =
+  (user?.email ? user.email[0].toUpperCase() : "U") +
+  (user?.email?.split("@")[0]?.[1]?.toUpperCase() ?? "");
 
   const goDashboard = () => navigate("/dashboard");
   const goBook = () => navigate("/book");
   const goBookings = () => navigate("/bookings");
   const goMembership = () => navigate("/membership");
   const goProfile = () => navigate("/profile");
-
+  
   return (
     <div className="profile-root">
       {/* Top nav */}
@@ -55,16 +75,12 @@ export default function ProfilePage() {
         </nav>
 
         <div className="flex items-center gap-4">
-          <button className="relative">
-            <span className="material-icons text-slate-500 text-[20px]">
-              notifications
-            </span>
-            <span className="absolute -top-1 -right-1 w-4 h-4 rounded-full bg-red-500 text-[10px] text-white flex items-center justify-center">
-              2
-            </span>
+          <button className="relative h-9 px-4 rounded-full border border-slate-200 bg-white text-slate-700 text-[13px] hover:bg-slate-50 text-red-700" type="button"
+  onClick={handleLogout}>Logout
+          
           </button>
           <div className="w-9 h-9 rounded-full bg-blue-600 text-white flex items-center justify-center text-[14px] font-semibold">
-            JD
+            {initials}
           </div>
         </div>
       </header>
@@ -83,16 +99,22 @@ export default function ProfilePage() {
           <aside className="profile-sidebar">
             <div className="profile-avatar-wrapper">
               <div className="profile-avatar">
-                JD
+                {initials}
                 <div className="profile-avatar-badge">
                   <span className="material-icons text-[18px] text-blue-600">
                     photo_camera
                   </span>
                 </div>
               </div>
-              <div className="profile-avatar-name">John Doe</div>
-              <div className="profile-avatar-email">user@example.com</div>
-              <span className="profile-role-badge">USER</span>
+
+   <div className="profile-avatar-name">
+  {user?.email?.split("@")[0] ?? "User"}
+</div>
+
+<div className="profile-avatar-email">{user?.email ?? ""}</div>
+
+<span className="profile-role-badge">{role ?? "USER"}</span>
+
             </div>
 
             <div className="profile-security-card">

@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import "../styles/auth.css"; // ⬅️ import Tailwind component styles
+import "../styles/auth.css"; 
 import SecurityFeature from "../components/SecurityFeature.jsx";
 import { supabase } from "../lib/supabaseClient";
 import { useAuth } from "../context/auth.jsx";
@@ -21,17 +21,6 @@ const [error, setError] = useState("");
 
   const navigate = useNavigate();
 
-  // const handleSubmit = (e) => {
-  //   e.preventDefault();
-
-  //   // Fake auth handler – replace with real API later
-  //   if (mode === "login") {
-  //     navigate("/dashboard");
-  //   } else {
-  //     navigate("/dashboard");
-  //   }
-  // };
-
   const handleSubmit = async (e) => {
   e.preventDefault();
   setSubmitting(true);
@@ -39,11 +28,20 @@ const [error, setError] = useState("");
 
   try {
     if (mode === "register") {
-      const { error } = await supabase.auth.signUp({ email, password });
+      const {data, error } = await supabase.auth.signUp({ email, password });
       if (error) throw error;
 
-      // If email confirmations are ON, user may need to confirm via email.
-      // If OFF, they’ll be logged in immediately and redirected by the useEffect above.
+ const newUserId = data?.user?.id;
+      if (newUserId) {
+        const { error: pErr } = await supabase
+          .from("profiles")
+          .insert([{ id: newUserId }]);
+
+        if (pErr) {
+          console.warn("Profile insert error:", pErr.message);
+        }
+      }
+
     } else {
       const { error } = await supabase.auth.signInWithPassword({ email, password });
       if (error) throw error;
@@ -234,9 +232,7 @@ const [error, setError] = useState("");
               </button>
             </div>
 
-            {/* <button type="submit" className="auth-primary-button">
-              {mode === "login" ? "Sign In" : "Create Account"}
-            </button> */}
+   
 
 {error && (
   <div className="text-[13px] text-rose-600 bg-rose-50 border border-rose-100 rounded-xl px-3 py-2">

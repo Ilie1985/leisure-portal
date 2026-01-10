@@ -26,7 +26,7 @@ const mockUpcomingBookings = [
 
 export default function DashboardPage() {
   const navigate = useNavigate();
-const { user } = useAuth();
+const { user, role} = useAuth();
 const displayName = user?.email?.split("@")[0] ?? "User";
 const initials = (displayName[0] ?? "U").toUpperCase();
 
@@ -103,7 +103,9 @@ const initials = (displayName[0] ?? "U").toUpperCase();
         <div className="dashboard-main">
           {/* Hero / welcome */}
           <section className="dashboard-hero">
-            <div className="dashboard-hero-title">Welcome back, {displayName}!</div>
+            <div className="dashboard-hero-title">Welcome back, {user?.email?.split("@")[0]}!
+Role: {role}
+</div>
             <div className="dashboard-hero-subtitle">
               Manage your bookings and membership in one place.
             </div>
