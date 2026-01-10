@@ -8,6 +8,7 @@ import ProfilePage from "./pages/profile.jsx";
 import AdminPage from "./pages/admin.jsx";
 
 
+
 function App() {
   return (
     <Routes>
@@ -27,3 +28,10 @@ function App() {
 }
 
 export default App;
+// src/App.jsx
+// import { RouterProvider } from "react-router-dom";
+// import { router } from "./context/router.jsx";
+
+// export default function App() {
+//   return <RouterProvider router={router} />;
+// }

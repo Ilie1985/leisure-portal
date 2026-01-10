@@ -1,5 +1,6 @@
 // src/context/router.jsx
 import { createBrowserRouter } from "react-router-dom";
+import AdminPage from "../pages/admin.jsx";
 
 import AuthPage from "../pages/auth.jsx";
 import DashboardPage from "../pages/dashboard.jsx";
@@ -52,4 +53,18 @@ export const router = createBrowserRouter([
       </ProtectedRoute>
     ),
   },
+  {
+  path: "*",
+  element: <AuthPage />,
+},
+
+{
+  path: "/admin",
+  element: (
+    <ProtectedRoute>
+      <AdminPage />
+    </ProtectedRoute>
+  ),
+},
+
 ]);
