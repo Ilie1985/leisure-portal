@@ -7,31 +7,68 @@ import MembershipPage from "./pages/membership.jsx";
 import ProfilePage from "./pages/profile.jsx";
 import AdminPage from "./pages/admin.jsx";
 
-
+import ProtectedRoute from "./components/ProtectedRoute.jsx"; // ✅ adjust path if needed
 
 function App() {
   return (
     <Routes>
-      {/* Main auth route */}
+      {/* Public */}
       <Route path="/" element={<AuthPage />} />
-       <Route path="/dashboard" element={<DashboardPage />} />
-       <Route path="/book" element={<BookPage />} />
-       <Route path="/bookings" element={<BookingsPage />} />
-       <Route path="/membership" element={<MembershipPage />} />
-       <Route path="/profile" element={<ProfilePage />} />
-       <Route path="/admin" element={<AdminPage />} />
 
-      {/* Fallback: any unknown route goes back to login */}
+      {/* Protected */}
+      <Route
+        path="/dashboard"
+        element={
+          <ProtectedRoute>
+            <DashboardPage />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/book"
+        element={
+          <ProtectedRoute>
+            <BookPage />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/bookings"
+        element={
+          <ProtectedRoute>
+            <BookingsPage />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/membership"
+        element={
+          <ProtectedRoute>
+            <MembershipPage />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/profile"
+        element={
+          <ProtectedRoute>
+            <ProfilePage />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/admin"
+        element={
+          <ProtectedRoute>
+            <AdminPage />
+          </ProtectedRoute>
+        }
+      />
+
+      {/* Fallback */}
       <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>
   );
 }
 
 export default App;
-// src/App.jsx
-// import { RouterProvider } from "react-router-dom";
-// import { router } from "./context/router.jsx";
-
-// export default function App() {
-//   return <RouterProvider router={router} />;
-// }
