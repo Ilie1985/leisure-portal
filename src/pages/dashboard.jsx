@@ -1,37 +1,16 @@
-// src/pages/dashboard.jsx
 import { useAuth } from "../context/auth.jsx";
 import "../styles/dashboard.css";
 import { useNavigate } from "react-router-dom";
 import { supabase } from "../lib/supabaseClient";
 import { useEffect, useMemo, useState } from "react";
+import Topbar from "../components/Topbar.jsx";
 
-
-// const mockUpcomingBookings = [
-//   {
-//     id: 1,
-//     service: "Swimming Lesson",
-//     date: "2025-11-05 at 14:00",
-//     status: "Confirmed",
-//   },
-//   {
-//     id: 2,
-//     service: "Library Session",
-//     date: "2025-11-08 at 10:00",
-//     status: "Confirmed",
-//   },
-//   {
-//     id: 3,
-//     service: "Hall Reservation",
-//     date: "2025-11-10 at 18:00",
-//     status: "Pending",
-//   },
-// ];
 
 export default function DashboardPage() {
   const navigate = useNavigate();
 const { user, role} = useAuth();
 const displayName = user?.email?.split("@")[0] ?? "User";
-const initials = (displayName[0] ?? "U").toUpperCase();
+// const initials = (displayName[0] ?? "U").toUpperCase();
 
 
 const [loadingBookings, setLoadingBookings] = useState(true);
@@ -76,7 +55,7 @@ const upcomingBookings = userBookings.filter(
 );
 
 
-  const goDashboard = () => navigate("/dashboard");
+  // const goDashboard = () => navigate("/dashboard");
   const goBook = () => navigate("/book");
   const goBookings = () => navigate("/bookings");       
   const goMembership = () => navigate("/membership");   
@@ -85,64 +64,11 @@ const upcomingBookings = userBookings.filter(
   return (
     <div className="dashboard-root">
       {/* Top nav */}
-      <header className="dashboard-topbar">
-       
-        <div 
-  className="dashboard-brand cursor-pointer"
-  onClick={() => navigate("/")}
->
-  <div className="w-9 h-9 rounded-2xl bg-blue-600 flex items-center justify-center text-white text-lg font-bold">
-    L
-  </div>
-  <div className="leading-tight">
-    <div className="text-[14px] font-semibold text-slate-900">
-      Leisure Management
-    </div>
-    <div className="text-[11px] text-slate-500">Your wellness hub</div>
-  </div>
-</div>
+     
 
 
-        <nav className="dashboard-nav">
-          <button
-            className="dashboard-nav-link dashboard-nav-link-active"
-            onClick={goDashboard}
-          >
-            <span className="material-icons text-[16px]">home</span>
-            <span>Dashboard</span>
-          </button>
-          <button className="dashboard-nav-link" onClick={goBook}>
-            <span className="material-icons text-[16px]">calendar_today</span>
-            <span>Book Services</span>
-          </button>
-          <button className="dashboard-nav-link" onClick={goBookings}>
-            <span className="material-icons text-[16px]">list_alt</span>
-            <span>My Bookings</span>
-          </button>
-          <button className="dashboard-nav-link" onClick={goMembership}>
-            <span className="material-icons text-[16px]">credit_card</span>
-            <span>Membership</span>
-          </button>
-          <button className="dashboard-nav-link" onClick={goProfile}>
-            <span className="material-icons text-[16px]">person</span>
-            <span>Profile</span>
-          </button>
-        </nav>
+<Topbar active="dashboard" />
 
-        <div className="flex items-center gap-4">
-          <button className="relative">
-            <span className="material-icons text-slate-500 text-[20px]">
-              notifications
-            </span>
-            <span className="absolute -top-1 -right-1 w-4 h-4 rounded-full bg-red-500 text-[10px] text-white flex items-center justify-center">
-              2
-            </span>
-          </button>
-          <div className="w-9 h-9 rounded-full bg-blue-600 text-white flex items-center justify-center text-[14px] font-semibold">
-            {initials}
-          </div>
-        </div>
-      </header>
 
       {/* Main */}
       <main className="dashboard-shell">

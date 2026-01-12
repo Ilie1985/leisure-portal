@@ -1,4 +1,3 @@
-// src/components/SecurityFeature.jsx
 export default function SecurityFeature({
   icon,
   iconBg,

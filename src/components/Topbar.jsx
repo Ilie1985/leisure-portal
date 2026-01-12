@@ -1,16 +1,27 @@
-// src/components/Topbar.jsx
 import "../styles/dashboard.css";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/auth.jsx";
 
 export default function Topbar({ active = "dashboard" }) {
   const navigate = useNavigate();
-  const location = useLocation();
-  const { role } = useAuth();
+
+  const { role, signOut, user } = useAuth();
 
   const go = (path) => () => navigate(path);
 
   const isActive = (key) => (active === key ? "dashboard-nav-link-active" : "");
+
+  const handleLogout = async () => {
+    try {
+      await signOut();
+      navigate("/", { replace: true });
+    } catch (e) {
+      console.warn("Logout error:", e?.message);
+    }
+  };
+
+  const displayName = user?.email?.split("@")[0] ?? "U";
+  const initials = (displayName[0] ?? "U").toUpperCase();
 
   return (
     <header className="dashboard-topbar">
@@ -65,7 +76,7 @@ export default function Topbar({ active = "dashboard" }) {
         )}
       </nav>
 
-      <div className="flex items-center gap-4">
+      <div className="flex items-center gap-3">
         <button className="relative">
           <span className="material-icons text-slate-500 text-[20px]">
             notifications
@@ -74,10 +85,20 @@ export default function Topbar({ active = "dashboard" }) {
             2
           </span>
         </button>
+
         <div className="w-9 h-9 rounded-full bg-blue-600 text-white flex items-center justify-center text-[14px] font-semibold">
-          {/* simple placeholder avatar */}
-          {location.pathname.startsWith("/admin") ? "AD" : "U"}
+          {initials}
         </div>
+
+        {/* ✅ LOGOUT */}
+        <button
+          type="button"
+          onClick={handleLogout}
+          className="h-9 px-4 rounded-full border border-slate-200 bg-white text-slate-700 text-[13px] hover:bg-slate-50 transition"
+          title="Logout"
+        >
+          Logout
+        </button>
       </div>
     </header>
   );
