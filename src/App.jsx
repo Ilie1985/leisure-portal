@@ -7,7 +7,7 @@ import MembershipPage from "./pages/membership.jsx";
 import ProfilePage from "./pages/profile.jsx";
 import AdminPage from "./pages/admin.jsx";
 import AdminRoute from "./components/AdminRoute.jsx";
-import ProtectedRoute from "./components/ProtectedRoute.jsx"; // ✅ adjust path if needed
+import ProtectedRoute from "./components/ProtectedRoute.jsx"; 
 
 function App() {
   return (
