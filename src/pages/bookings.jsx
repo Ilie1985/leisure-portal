@@ -24,7 +24,7 @@ export default function BookingsPage() {
 
     let q = supabase.from("bookings").select("*").order("start_time", { ascending: true });
 
-    // ✅ USERS: only their own bookings
+    // Users see only their own bookings
     if (role !== "ADMIN") {
       q = q.eq("user_id", user.id);
     }
@@ -52,7 +52,7 @@ export default function BookingsPage() {
 
   return (
     <div className="dashboard-root">
-      {/* ✅ shared topbar with Admin button */}
+      
       <Topbar active="bookings" />
 
       <div className="bookings-root">

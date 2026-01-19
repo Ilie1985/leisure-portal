@@ -10,7 +10,6 @@ export default function DashboardPage() {
   const navigate = useNavigate();
 const { user, role} = useAuth();
 const displayName = user?.email?.split("@")[0] ?? "User";
-// const initials = (displayName[0] ?? "U").toUpperCase();
 
 
 const [loadingBookings, setLoadingBookings] = useState(true);
@@ -55,7 +54,7 @@ const upcomingBookings = userBookings.filter(
 );
 
 
-  // const goDashboard = () => navigate("/dashboard");
+  
   const goBook = () => navigate("/book");
   const goBookings = () => navigate("/bookings");       
   const goMembership = () => navigate("/membership");   

@@ -6,7 +6,7 @@ import { supabase } from "../lib/supabaseClient";
 import { useAuth } from "../context/auth.jsx";
 import Topbar from "../components/Topbar.jsx";
 
-// Fallback time slots (you can improve later by making slots a DB table)
+// Fallback time slots 
 const GENERIC_SLOTS = ["09:00", "10:00", "11:00", "14:00", "15:00", "16:00"];
 
 function fmtMoney(priceCents) {
@@ -170,7 +170,7 @@ export default function BookPage() {
 
   return (
     <div className="dashboard-root">
-      {/* ✅ shared topbar (you already use it elsewhere) */}
+      
       <Topbar active="book" />
 
       <main className="dashboard-shell">

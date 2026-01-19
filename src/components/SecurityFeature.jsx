@@ -1,3 +1,6 @@
+
+// This reusable component displays a single security feature (icon + title + short description) on the authentication page it helps avoid repeating the same layout for each feature.
+
 export default function SecurityFeature({
   icon,
   iconBg,

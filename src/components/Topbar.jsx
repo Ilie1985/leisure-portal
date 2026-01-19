@@ -63,7 +63,7 @@ export default function Topbar({ active = "dashboard" }) {
           <span>Profile</span>
         </button>
 
-        {/* ✅ ADMIN BUTTON (only shows for admins) */}
+        {/* Admin button only shows for admins*/}
         {role === "ADMIN" && (
           <button
             className={`dashboard-nav-link ${isActive("admin")}`}
@@ -90,7 +90,7 @@ export default function Topbar({ active = "dashboard" }) {
           {initials}
         </div>
 
-        {/* ✅ LOGOUT */}
+        {/* Logout button */}
         <button
           type="button"
           onClick={handleLogout}

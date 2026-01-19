@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import "../styles/dashboard.css"; // reuse top nav styles if you want
-import "../styles/admin.css"; // optional (if you have it)
+import "../styles/dashboard.css";
+import "../styles/admin.css"; 
 import { supabase } from "../lib/supabaseClient";
 import { useAuth } from "../context/auth.jsx";
 
@@ -16,11 +16,11 @@ export default function AdminPage() {
   const [filter, setFilter] = useState("all"); // all | confirmed | pending | cancelled
   const [q, setQ] = useState("");
 
-  // --------- NAV ----------
+  // navigation
   const goDashboard = () => navigate("/dashboard");
   const goAdmin = () => navigate("/admin");
 
-  // --------- LOAD ----------
+  // load
   async function loadAllBookings() {
     setLoading(true);
     setError("");
@@ -46,7 +46,7 @@ export default function AdminPage() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [role]);
 
-  // --------- ACTIONS ----------
+  // actions
   async function setStatus(id, status) {
     setError("");
     const { error } = await supabase.from("bookings").update({ status }).eq("id", id);
@@ -70,7 +70,8 @@ export default function AdminPage() {
     loadAllBookings();
   }
 
-  // --------- DERIVED DATA ----------
+  // Derived data 
+
   const now = useMemo(() => new Date(), []);
 
   const filtered = useMemo(() => {
@@ -129,7 +130,8 @@ export default function AdminPage() {
     return dollars.toLocaleString(undefined, { style: "currency", currency: "USD" });
   }, [revenueToday]);
 
-  // --------- UI ----------
+  // UI logic
+
   return (
     <div className="dashboard-root">
       {/* Top nav */}
